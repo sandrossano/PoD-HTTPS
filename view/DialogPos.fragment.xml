@@ -1,0 +1,89 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+ <Dialog title="Dettaglio posizione" id="DialogPos" afterClose="onAfterClose">
+  <VBox class="">
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Numero DDT" labelFor="DDTDialog" width="8em" vAlign="Middle" />
+    <Text id="DDTDialog" text="" textAlign="Center" />
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Posizione" labelFor="PosDialog" width="8em" vAlign="Middle" />
+    <Text id="PosDialog" text="" />
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Qtà Consegna" labelFor="QtaCons" width="8em" vAlign="Middle" />
+    <Text id="QtaCons" text="" textAlign="Center" />
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Unità di Misura" labelFor="UM" width="8em" vAlign="Middle" />
+    <Text id="UM" text="" textAlign="Center" />
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Materiale" labelFor="Materiale" width="8em" vAlign="Middle" />
+    <Text id="Materiale" text="" />
+   </HBox>
+   <VBox class="sapUiTinyMargin">
+    <Label text="Data e Ora prima pesata Casillo (Check In)" labelFor="DdHhCheckIn" width="20em" vAlign="Middle" />
+    <VBox alignItems="End">
+    <DateTimePicker id="DdHhCheckIn" 
+    change="handleChange" placeholder="Inserire Data" 
+    valueFormat="yyyyMMdd, HHmm" displayFormat="dd/MM/yyyy, HH:mm"
+    width="11em" />
+    </VBox>
+   </VBox>
+   <VBox class="sapUiTinyMargin">
+    <Label text="Data e Ora seconda pesata Casillo (Check Out)" labelFor="DdHhCheckOut" width="22em" vAlign="Middle" />
+    <VBox alignItems="End">
+    <DateTimePicker id="DdHhCheckOut" 
+    change="handleChange" placeholder="Inserire Data" 
+    valueFormat="yyyyMMdd, HHmm" displayFormat="dd/MM/yyyy, HH:mm"
+    width="11em" />
+    </VBox>
+   </VBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Data e Ora Arrivo" labelFor="DdHhArrivo" width="10em" vAlign="Middle" />
+    <DateTimePicker id="DdHhArrivo" 
+    change="handleChange" placeholder="Inserire Data" 
+    valueFormat="yyyyMMdd, HHmm" displayFormat="dd/MM/yyyy, HH:mm"
+    width="11em" />
+
+    <!--<Input id="DdHhArrivo" type="Number" width="7em"/>-->
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Data e Ora II pesata" labelFor="DdHhPesata" width="10em" vAlign="Middle" />
+    <DateTimePicker id="DdHhPesata" displayFormat="dd/MM/yyyy, HH:mm" placeholder="Inserire Data" 
+    valueFormat="yyyyMMdd, HHmm" change="handleChange" width="11em" />
+
+    <!--<Input id="DdHhPesata" type="Number" width="7em" />-->
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Peso netto" labelFor="PesoNetto" width="10em" vAlign="Middle" />
+    <Input id="PesoNetto" type="Number" width="7em" />
+   </HBox>
+   <HBox alignItems="Center" class="sapUiTinyMargin">
+    <Label text="Note" labelFor="Note" width="10em" vAlign="Middle" />
+    <Select width="11em" wrapItemsText="true" items="{Note>/Values}" id = "Note">
+		<core:Item key="{Note>NotaVal}" text="{Note>NotaVal}" />
+	</Select>
+    <!--<Input id="Note" type="Number" width="7em" />-->
+   </HBox>
+   <!--<SearchField id="searchField"  width="15em" placeholder="search for..."
+     enableSuggestions="true" search="onSearch" suggest="onSuggest"
+     suggestionItems="{
+     path: '/ProductCollection',
+     sorter: { path: 'Name' }
+    }">
+     <suggestionItems>
+      <SuggestionItem text="{Name}"
+       description="{path:'Price'} {path:'CurrencyCode'}" key="{ProductId}" />
+     </suggestionItems>
+    </SearchField>-->
+  </VBox>
+  <beginButton>
+   <Button text="Annulla" press="onClose" />
+  </beginButton>
+  <endButton>
+   <Button text="Salva" press="onSave" />
+  </endButton>
+ </Dialog>
+
+</core:FragmentDefinition>

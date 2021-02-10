@@ -1,0 +1,108 @@
+<mvc:View controllerName="Quickstart.controller.Pod" displayBlock="true" xmlns:fb="sap.ui.comp.filterbar" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<App id="app">
+		<Page title="Proof of Delivery" class="page2BgImg">
+			<headerContent>
+				<ObjectStatus text="" id="userHeader" icon="sap-icon://employee" state="Information" />
+				<Button icon="sap-icon://log" press=".onLogout" class="sapUiSmallMarginEnd" tooltip="Disconnetti" />
+			</headerContent>
+			<VBox alignItems="Center">
+				<Image class="sapUiSmallMarginTop" src="./img/Casillo_logo.png" width="300px" />
+			</VBox>
+			<Panel id="FilterPanel" headerText="Filtri" expandable="true">
+				<VBox>
+					<fb:FilterBar useToolbar="false" header="Filtri" clear="onClearFilter" showClearOnFB="true" search="onFilterInvoices" showFilterConfiguration="false" class="BoxFilter">
+						<fb:filterGroupItems>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="DDT" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="DDTFilter" placeholder="DDT" />
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Data Consegna" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker id="DataFilter" valueFormat="dd.MM.yyyy" />
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="E" label="Targa" labelTooltip="Tooltip Example" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="TargaFilter" placeholder="Targa" />
+								</fb:control>
+							</fb:FilterGroupItem>
+
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="C" label="Destinatario" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="DestFilter" placeholder="Destinatario" />
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+
+					</fb:FilterBar>
+				</VBox>
+			</Panel>
+			<Table id="DDTList" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto" items="{DDT>/results}">
+				<headerToolbar>
+					<Toolbar>
+						<Image src="./img/pod.png" width="2%" />
+						<Title text="Lista DDT" />
+						<ToolbarSpacer/>
+						<Button id="sortUsersButton" text="Ordina per Data" press="onSort" tooltip="{i18n>sortButtonText}" icon="sap-icon://sort" />
+						<Button id="sortDDTButton" text="Ordina per DDT" press="onSortDDT" tooltip="{i18n>sortButtonText}" icon="sap-icon://sort" />
+						<Button id="hideUsersButton" text="Show/Hide Elab." press="onHideElab" tooltip="{i18n>sortButtonText}" icon="sap-icon://hide" />
+						<!--<SearchField width="60%" search="onFilterInvoices" placeholder="Ricerca" />-->
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="50px">
+						<Text text="Elab." />
+					</Column>
+					<Column>
+						<Text text="Numero DDT" />
+					</Column>
+					<Column>
+						<Text text="Targa" />
+					</Column>
+					<Column>
+						<Text text="Data Consegna" />
+					</Column>
+					<!--<Column>
+						<Text text="Committente" />
+					</Column>
+					<Column>
+						<Text text="Città Comm." />
+					</Column>-->
+					<Column>
+						<Text text="Destinatario" />
+					</Column>
+					<Column>
+						<Text text="Città Dest." />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onPressItem">
+						<cells>
+							<!--<ObjectNumber number="{DDT>Quantity}" emphasized="false" />
+							<ObjectIdentifier title="{DDT>ProductName}" />
+							<Text text="{ path: 'DDT>Status', formatter: '.formatter.statusText' }" />-->
+
+							<core:Icon src="{DDT>Check_ZPOD}" class="size2" color="#39824d"></core:Icon>
+
+							<!--<Text text="{DDT>Check_ZPOD}" /> -->
+							<Text text="{DDT>NumeroDDT}" />
+							<Text text="{DDT>Targa}" />
+							<Text text="{DDT>DataConsegna}" />
+							<!--<Text text="{DDT>NomeComm}" />
+							<Text text="{DDT>CittaComm}" />-->
+							<Text text="{DDT>NomeDest}" />
+							<Text text="{DDT>CittaDest}" />
+							<!--<ObjectNumber number="{ parts: [{path: 'DDT>ExtendedPrice'}, 'EUR'], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }" unit="EUR" state="{= ${DDT>ExtendedPrice} > 50 ? 'Error' : 'Success' }" />
+						-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</Page>
+	</App>
+</mvc:View>

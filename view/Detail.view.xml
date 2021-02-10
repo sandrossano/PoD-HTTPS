@@ -1,0 +1,146 @@
+<mvc:View controllerName="Quickstart.controller.Detail" displayBlock="true" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<App id="app">
+		<Page title="Dettaglio Consegna" id="titleDetail" class="page2BgImg" showNavButton="true" navButtonPress="onNavBack">
+			<headerContent>
+				<ObjectStatus text="" id="userHeader" icon="sap-icon://employee" state="Information"/>
+				<Button icon="sap-icon://log" press=".onLogout" class="sapUiSmallMarginEnd" tooltip="Disconnetti" />
+			</headerContent>
+			<VBox alignItems="Center">
+				<Image class="sapUiSmallMarginTop" src="./img/Casillo_logo.png" width="300px" />
+			</VBox>
+
+			<f:Form id="FormDisplay480_12120Dual" editable="false">
+
+				<f:title>
+					<core:Title text="" id="DDTHeader" />
+				</f:title>
+
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title="Committente">
+						<f:formElements>
+							<f:FormElement label="Nome">
+								<f:fields>
+									<Text text="" id="NomeComm" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Città">
+								<f:fields>
+									<Text text="" id="CittaComm" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CAP">
+								<f:fields>
+									<Text text="" id="CapComm" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Provincia">
+								<f:fields>
+									<Text text="" id="RegioComm" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Indirizzo">
+								<f:fields>
+									<Text text="" id="ViaComm" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title="Destinatario">
+						<f:formElements>
+							<f:FormElement label="Nome">
+								<f:fields>
+									<Text text="" id="NomeDest" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Città">
+								<f:fields>
+									<Text text="" id="CittaDest" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CAP">
+								<f:fields>
+									<Text text="" id="CapDest" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Provincia">
+								<f:fields>
+									<Text text="" id="RegioDest" />
+								</f:fields>
+							</f:FormElement>
+
+							<f:FormElement label="Indirizzo">
+								<f:fields>
+									<Text text="" id="ViaDest" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title="Dati DDT">
+						<f:formElements>
+							<f:FormElement label="Consegna">
+								<f:fields>
+									<Text text="" id="ConsegnaText" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Data Consegna">
+								<f:fields>
+									<Text text="" id="DataConsegna" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+
+			<Table id="DDTPos" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto" items="{DDTPos>/results}">
+				<headerToolbar>
+					<Toolbar>
+						<Image src="./img/position.png" width="2%" />
+						<Title text="Posizioni DDT" />
+						<ToolbarSpacer/>
+						<!--<SearchField width="60%" search="onFilterInvoices" placeholder="Ricerca Cliente" />-->
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Posizione" />
+					</Column>
+					<Column>
+						<Text text="Materiale" />
+					</Column>
+					<Column>
+						<Text text="Qtà Consegna" />
+					</Column>
+					<Column>
+						<Text text="Qtà POD" />
+					</Column>
+					<Column>
+						<Text text="Unità di Misura" />
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onPressPos">
+						<cells>
+							<!--<ObjectNumber number="{DDT>Quantity}" emphasized="false" />
+							<ObjectIdentifier title="{DDT>ProductName}" />
+							<Text text="{ path: 'DDT>Status', formatter: '.formatter.statusText' }" />-->
+							<Text text="{DDTPos>Posizione}" />
+							<Text text="{DDTPos>Materiale}" />
+							<Text text="{DDTPos>QtaConsegna}" />
+							<Text text="{DDTPos>PesoNetto}" />
+							<Text text="{DDTPos>UM}" />
+
+							<!--<ObjectNumber number="{ parts: [{path: 'DDT>ExtendedPrice'}, 'EUR'], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }" unit="EUR" state="{= ${DDT>ExtendedPrice} > 50 ? 'Error' : 'Success' }" />
+						-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</Page>
+	</App>
+</mvc:View>
