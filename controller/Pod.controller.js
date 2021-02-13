@@ -32,19 +32,6 @@ sap.ui.define(
         var logged = sessionStorage.getItem("Logged");
         usr = sessionStorage.getItem("User");
 
-        var d = new Date();
-        var n = d.getTime();
-        var sParam = UriParameters.fromQuery(window.location.search).get(
-          "User"
-        );
-        var sParam2 = UriParameters.fromQuery(window.location.search).get(
-          "Portal"
-        );
-        if (n - sParam2 <= 120000) {
-          usr = sParam;
-          logged = "X";
-        }
-
         if (logged !== "X") {
           window.open("index.html", "_self");
         }
@@ -127,7 +114,7 @@ sap.ui.define(
       },
       onLogout: function () {
         sessionStorage.clear();
-        window.open("index.html", "_self");
+        window.open("https://portal.awskeytech.com/", "_self");
       },
       onClearFilter: function (oEvent) {
         // build filter array

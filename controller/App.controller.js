@@ -2,9 +2,10 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
+    "sap/base/util/UriParameters",
     "sap/m/MessageToast"
   ],
-  function (Controller, JSONModel, MessageToast) {
+  function (Controller, JSONModel, UriParameters, MessageToast) {
     "use strict";
     var pressDialog;
     var usr;
@@ -13,6 +14,19 @@ sap.ui.define(
       onInit: function () {
         var logged = sessionStorage.getItem("Logged");
         usr = sessionStorage.getItem("User");
+
+        var sParam = UriParameters.fromQuery(window.location.search).get("US");
+        var sParam2 = UriParameters.fromQuery(window.location.search).get("TK");
+        var d = new Date();
+        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes()).toString();
+
+        if (passhash === sParam2) {
+          usr = sParam;
+          logged = "X";
+          sessionStorage.setItem("Logged", logged);
+          sessionStorage.setItem("User", usr);
+        }
+
         if (logged === "X") {
           window.open("pod.html", "_self");
         }
