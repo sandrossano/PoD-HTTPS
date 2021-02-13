@@ -32,6 +32,18 @@ sap.ui.define(
         var logged = sessionStorage.getItem("Logged");
         usr = sessionStorage.getItem("User");
 
+        var sParam = UriParameters.fromQuery(window.location.search).get("US");
+        var sParam2 = UriParameters.fromQuery(window.location.search).get("TK");
+        var d = new Date();
+        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes()).toString();
+
+        if (passhash === sParam2) {
+          usr = sParam;
+          logged = "X";
+          sessionStorage.setItem("Logged", logged);
+          sessionStorage.setItem("User", usr);
+        }
+
         if (logged !== "X") {
           window.open("index.html", "_self");
         }
