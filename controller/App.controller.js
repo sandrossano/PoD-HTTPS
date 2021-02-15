@@ -135,7 +135,12 @@ sap.ui.define(
             pressDialog.close();
             pressDialog.destroy();
             setTimeout(function () {
-              window.open("pod.html", "_self");
+              var d = new Date();
+              var passhash = CryptoJS.MD5(
+                d.getHours() + d.getMinutes()
+              ).toString();
+              var link = "pod.html" + "?US=" + usr + "&TK=" + passhash;
+              window.open(link, "_self");
             }, 1000);
           })
           .catch(function (result) {
@@ -236,8 +241,13 @@ sap.ui.define(
               sessionStorage.setItem("Logged", "X");
               sessionStorage.setItem("User", usr);
               setTimeout(function () {
-                window.open("pod.html", "_self");
-              }, 2000);
+                var d = new Date();
+                var passhash = CryptoJS.MD5(
+                  d.getHours() + d.getMinutes()
+                ).toString();
+                var link = "pod.html" + "?US=" + usr + "&TK=" + passhash;
+                window.open(link, "_self");
+              }, 1000);
             }
           })
           .catch(function (result) {

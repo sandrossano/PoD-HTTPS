@@ -130,7 +130,7 @@ sap.ui.define(
       },
       onLogout: function () {
         sessionStorage.clear();
-        window.open("https://portal.awskeytech.com/", "_self");
+         window.open("https://portal.awskeytech.com", "_self");
       },
       onClearFilter: function (oEvent) {
         // build filter array
