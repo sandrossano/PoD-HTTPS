@@ -18,7 +18,7 @@ sap.ui.define(
         var sParam = UriParameters.fromQuery(window.location.search).get("US");
         var sParam2 = UriParameters.fromQuery(window.location.search).get("TK");
         var d = new Date();
-        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes()).toString();
+        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes() + "").toString();
 
         if (passhash === sParam2) {
           usr = sParam;
