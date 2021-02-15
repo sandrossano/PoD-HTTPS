@@ -137,7 +137,7 @@ sap.ui.define(
             setTimeout(function () {
               var d = new Date();
               var passhash = CryptoJS.MD5(
-                d.getHours() + d.getMinutes()
+                d.getHours() + d.getMinutes() + ""
               ).toString();
               var link = "pod.html" + "?US=" + usr + "&TK=" + passhash;
               window.open(link, "_self");
@@ -243,7 +243,7 @@ sap.ui.define(
               setTimeout(function () {
                 var d = new Date();
                 var passhash = CryptoJS.MD5(
-                  d.getHours() + d.getMinutes()
+                  d.getHours() + d.getMinutes() + ""
                 ).toString();
                 var link = "pod.html" + "?US=" + usr + "&TK=" + passhash;
                 window.open(link, "_self");
