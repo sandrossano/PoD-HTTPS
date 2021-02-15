@@ -44,6 +44,8 @@ sap.ui.define(
           logged = "X";
           sessionStorage.setItem("Logged", logged);
           sessionStorage.setItem("User", usr);
+        } else {
+          logged = "";
         }
 
         if (logged !== "X") {
