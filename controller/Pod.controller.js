@@ -8,7 +8,8 @@ sap.ui.define(
     "sap/base/util/UriParameters",
     "./formatter",
     "sap/ui/model/FilterType",
-    "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+    "sap/ui/core/format/DateFormat"
   ],
   function (
     Controller,
@@ -19,7 +20,8 @@ sap.ui.define(
     UriParameters,
     formatter,
     FilterType,
-    Sorter
+    Sorter,
+    DateFormat
   ) {
     "use strict";
     var pressDialog;
@@ -206,15 +208,31 @@ sap.ui.define(
           sMessage,
           iOrder = oView.getModel("appView").getProperty("/order");
 
+        var dateformat = DateFormat.getDateTimeInstance({
+          pattern: "dd.MM.YYYY"
+        });
         // Cycle between the states
         iOrder = (iOrder + 1) % aStates.length;
         var sOrder = aStates[iOrder];
+
+        var oSorter = new Sorter("DataConsegna", sOrder === "desc");
+        oSorter.fnCompare = function (value1, value2) {
+          var date2 = dateformat.parse(value2);
+          var date1 = dateformat.parse(value1);
+          value1 = date1.getTime();
+          value2 = date2.getTime();
+
+          if (value1 < value2) return -1;
+          if (value1 == value2) return 0;
+          if (value1 > value2) return 1;
+        };
+        oView.byId("DDTList").getBinding("items").aSorters.push(oSorter);
 
         oView.getModel("appView").setProperty("/order", iOrder);
         oView
           .byId("DDTList")
           .getBinding("items")
-          .sort(sOrder && new Sorter("DataConsegna", sOrder === "desc"));
+          .sort(sOrder && oSorter);
 
         /*			sMessage = this._getText("sortMessage", [
 							this._getText(aStateTextIds[iOrder])
