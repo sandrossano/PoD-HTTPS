@@ -37,16 +37,20 @@ sap.ui.define(
         var sParam = UriParameters.fromQuery(window.location.search).get("US");
         var sParam2 = UriParameters.fromQuery(window.location.search).get("TK");
         var d = new Date();
-        var passhash = CryptoJS.MD5(d.getHours() + d.getMinutes() + "").toString();
+        var passhash = CryptoJS.MD5(
+          d.getHours() + d.getMinutes() + ""
+        ).toString();
 
         if (passhash === sParam2) {
           usr = sParam;
           logged = "X";
           sessionStorage.setItem("Logged", logged);
           sessionStorage.setItem("User", usr);
-        } else {
-          logged = "";
         }
+        //rimosso per arrivo da dettaglio
+        /*else {
+          logged = "";
+        }*/
 
         if (logged !== "X") {
           window.open("index.html", "_self");
@@ -130,7 +134,7 @@ sap.ui.define(
       },
       onLogout: function () {
         sessionStorage.clear();
-         window.open("https://portal.awskeytech.com", "_self");
+        window.open("https://portal.awskeytech.com/", "_self");
       },
       onClearFilter: function (oEvent) {
         // build filter array
